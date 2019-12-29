@@ -1,4 +1,5 @@
-#!/bin/sh -eu
+#!/usr/bin/env sh
+set -eu
 
 #  Copyright 2019 Erik Oosting
 #
@@ -20,7 +21,8 @@ DISTINFO=$(curl -s https://registry.npmjs.com/$NAME/latest | jq .dist)
 SRC=$(echo $DISTINFO | jq .tarball)
 INTEGRITY=$(echo $DISTINFO | jq .shasum)
 PROJECT=$(mktemp -d)
-mkdir $NAME
+echo $PROJECT
+mkdir -p $NAME
 cd $PROJECT
 curl -so $NAME.tgz ${SRC:1:-1} 
 tar -xzf $NAME.tgz
