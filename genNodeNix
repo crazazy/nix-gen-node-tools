@@ -26,7 +26,7 @@ mkdir -p $NAME
 cd $PROJECT
 curl -so $NAME.tgz ${SRC:1:-1} 
 tar -xzf $NAME.tgz
-node2nix --nodejs-14 -i ./package/package.json
+node2nix --nodejs-18 -i ./package/package.json
 REPLACEMENT="src = fetchurl { url = $SRC; sha1 = $INTEGRITY; }"
 sed -i "s#src = ./package#$REPLACEMENT#g" node-packages.nix
 rm -rf package $NAME.tgz
